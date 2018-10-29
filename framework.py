@@ -29,13 +29,8 @@ GRIDSIZE=20
 GRID_WIDTH = SCREEN_WIDTH / GRIDSIZE
 GRID_HEIGHT = SCREEN_HEIGHT / GRIDSIZE
 
-#Testing stuff
-position = (10,10)
-color = (255,0,0)
-
-
 screen.blit(surface, (0,0))
-
+'''
 def draw_box(surf, color, pos):
     r = pygame.Rect((pos[0], pos[1]), (GRIDSIZE, GRIDSIZE))
     pygame.draw.rect(surf, color, r)
@@ -52,10 +47,10 @@ class Apple(object):
 
     def draw(self, surf):
         draw_box(surf, self.color, self.position)
-
+'''
 
 if __name__ == '__main__':
-    apple = Apple()
+    #apple = Apple()
     while True:
 
         for event in pygame.event.get():
@@ -64,12 +59,12 @@ if __name__ == '__main__':
                 sys.exit()
             elif event.type == KEYDOWN:
                 if event.key == K_SPACE:
-                    apple.randomize()
+                    #apple.randomize()
 
 
 
         surface.fill((255,255,255))
-        apple.draw(surface)
+        #apple.draw(surface)
         screen.blit(surface, (0,0))
 
         pygame.display.flip()
