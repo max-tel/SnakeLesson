@@ -26,9 +26,32 @@ clock = pygame.time.Clock()
 pygame.key.set_repeat(1, 40)
 
 
+GRIDSIZE=20
+GRID_WIDTH = SCREEN_WIDTH / GRIDSIZE
+GRID_HEIGHT = SCREEN_HEIGHT / GRIDSIZE
+
 screen.blit(surface, (0,0))
 
+def draw_box(surf, color, pos):
+    r = pygame.Rect((pos[0], pos[1]), (GRIDSIZE, GRIDSIZE))
+    pygame.draw.rect(surf, color, r)
+
+
+class Apple(object):
+    def __init__(self):
+        self.position = (0,0)
+        self.color = (255,0,0)
+        self.randomize()
+
+    def randomize(self):
+        self.position = (random.randint(0, GRID_WIDTH-1) * GRIDSIZE, random.randint(0, GRID_HEIGHT-1) * GRIDSIZE)
+
+    def draw(self, surf):
+        draw_box(surf, self.color, self.position)
+
+
 if __name__ == '__main__':
+    apple = Apple()
     while True:
 
         for event in pygame.event.get():
@@ -37,10 +60,12 @@ if __name__ == '__main__':
                 sys.exit()
             elif event.type == KEYDOWN:
                 if event.key == K_SPACE:
+                    apple.randomize()
 
 
 
         surface.fill((255,255,255))
+        apple.draw(surface)
         screen.blit(surface, (0,0))
 
         pygame.display.flip()
