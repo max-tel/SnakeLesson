@@ -40,18 +40,23 @@ def draw_box(surf, color, pos):
 class Apple(object):
     def __init__(self):
         self.position = (0,0)
-        self.color = (255,0,0)
+        self.colour = (255,0,0)
         self.randomize()
 
     def randomize(self):
         self.position = (random.randint(0, GRID_WIDTH-1) * GRIDSIZE, random.randint(0, GRID_HEIGHT-1) * GRIDSIZE)
+        self.colour = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
 
     def draw(self, surf):
-        draw_box(surf, self.color, self.position)
+        draw_box(surf, self.colour, self.position)
 
 
 if __name__ == '__main__':
     apple = Apple()
+    apple2 = Apple()
+    apple3 = Apple()
+
+
     while True:
 
         for event in pygame.event.get():
@@ -61,11 +66,15 @@ if __name__ == '__main__':
             elif event.type == KEYDOWN:
                 if event.key == K_SPACE:
                     apple.randomize()
+                    apple2.randomize()
+                    apple3.randomize()
 
 
 
         surface.fill((255,255,255))
         apple.draw(surface)
+        apple2.draw(surface)
+        apple3.draw(surface)
         screen.blit(surface, (0,0))
 
         pygame.display.flip()
